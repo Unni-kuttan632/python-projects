@@ -31,9 +31,19 @@
 
 # d1 = television()
 # d1.on()
-class book:
-    def read(self):
-         print("reading book")
+# class book:
+#     def read(self):
+#          print("reading book")
 
-d1 = book()
-d1.read()
+# d1 = book()
+# d1.read()
+
+class person:
+    def __init__(self, name, age):
+       self.name = name
+       self.age = age
+
+p1 = person("emil", 18)
+
+print(p1.name)
+print(p1.age)
