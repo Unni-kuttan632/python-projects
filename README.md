@@ -29,3 +29,27 @@ A minimal Django portfolio website with frontend HTML, CSS, and JavaScript.
    ```
 
 5. Open http://127.0.0.1:8000/ in your browser.
+
+## Login and signup with WampServer
+
+This project uses WampServer MariaDB/MySQL by default:
+
+- Database: `portfolio_site`
+- User: `root`
+- Password: blank
+- Host: `127.0.0.1`
+- Port: `3307`
+
+Create the database in phpMyAdmin or with:
+
+```sql
+CREATE DATABASE IF NOT EXISTS portfolio_site CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+```
+
+Then run:
+
+```powershell
+C:/Users/User/AppData/Local/Programs/Python/Python312/python.exe manage.py migrate
+```
+
+Signup records are stored in the `auth_user` table. Open http://127.0.0.1:8000/signup/ to create a user, then view the saved row in phpMyAdmin under `portfolio_site`.
