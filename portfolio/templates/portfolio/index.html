@@ -4,10 +4,22 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Portfolio | {{ profile.name }}</title>
+    <title>{{ profile.name }}</title>
     <link rel="stylesheet" href="{% static 'portfolio/style.css' %}" />
 </head>
 <body>
+    <div class="space-backdrop" aria-hidden="true">
+        <span class="star-layer star-layer-one"></span>
+        <span class="star-layer star-layer-two"></span>
+        <span class="nebula nebula-one"></span>
+        <span class="nebula nebula-two"></span>
+        <span class="fantasy-mountains"></span>
+        <span class="fantasy-castle"></span>
+        <span class="fantasy-dragon fantasy-dragon-perched"></span>
+        <span class="fantasy-dragon fantasy-dragon-flight"></span>
+        <span class="fantasy-fire"></span>
+        <span class="fantasy-mist"></span>
+    </div>
     <header class="site-header">
         <div class="container header-inner">
             <div class="brand">
@@ -23,6 +35,22 @@
                     <button type="submit">Logout</button>
                 </form>
             </nav>
+            <label class="theme-control" for="themeSelect">
+                <span>Theme</span>
+                <select id="themeSelect" class="theme-select" data-theme-select>
+                    <option value="dark">Galaxy</option>
+                    <option value="light">Light</option>
+                    <option value="ocean">Ocean</option>
+                    <option value="earth">Earth</option>
+                    <option value="fantasy">Dragon Castle</option>
+                </select>
+            </label>
+            <div class="theme-buttons" aria-label="Theme buttons">
+                <button type="button" data-theme-choice="dark">Galaxy</button>
+                <button type="button" data-theme-choice="ocean">Ocean</button>
+                <button type="button" data-theme-choice="earth">Earth</button>
+                <button type="button" data-theme-choice="fantasy">Castle</button>
+            </div>
             <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation" aria-expanded="false">
                 <span></span>
                 <span></span>
@@ -34,7 +62,7 @@
     <main>
         <section class="hero" id="home">
             <div class="container hero-content">
-                <span class="eyebrow">Hello, I'm {{ profile.name }}</span>
+                <span class="eyebrow">Galaxy Portfolio</span>
                 <h1>I am a {{ profile.role }}.</h1>
                 <p>{{ profile.bio }}</p>
                 <div class="hero-buttons">
@@ -45,6 +73,12 @@
                     <span>{{ profile.location }}</span>
                     <span>{{ profile.email }}</span>
                 </div>
+            </div>
+            <div class="orbit-system" aria-hidden="true">
+                <span class="planet planet-main"></span>
+                <span class="orbit orbit-one"></span>
+                <span class="orbit orbit-two"></span>
+                <span class="moon"></span>
             </div>
         </section>
 

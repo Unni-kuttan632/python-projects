@@ -7,8 +7,35 @@
     <title>Login | Portfolio</title>
     <link rel="stylesheet" href="{% static 'portfolio/style.css' %}" />
 </head>
-<body class="auth-page">
+<body class="auth-page milkyway-auth-page">
+    <div class="milkyway-backdrop" aria-hidden="true">
+        <span class="milkyway-band"></span>
+        <span class="milkyway-stars milkyway-stars-one"></span>
+        <span class="milkyway-stars milkyway-stars-two"></span>
+        <span class="fantasy-mountains"></span>
+        <span class="fantasy-castle"></span>
+        <span class="fantasy-dragon fantasy-dragon-perched"></span>
+        <span class="fantasy-dragon fantasy-dragon-flight"></span>
+        <span class="fantasy-fire"></span>
+        <span class="fantasy-mist"></span>
+    </div>
     <main class="auth-shell">
+        <label class="theme-control auth-theme-toggle" for="loginThemeSelect">
+            <span>Theme</span>
+            <select id="loginThemeSelect" class="theme-select" data-theme-select>
+                <option value="dark">Galaxy</option>
+                <option value="light">Light</option>
+                <option value="ocean">Ocean</option>
+                <option value="earth">Earth</option>
+                <option value="fantasy">Dragon Castle</option>
+            </select>
+        </label>
+        <div class="theme-buttons auth-theme-buttons" aria-label="Theme buttons">
+            <button type="button" data-theme-choice="dark">Galaxy</button>
+            <button type="button" data-theme-choice="ocean">Ocean</button>
+            <button type="button" data-theme-choice="earth">Earth</button>
+            <button type="button" data-theme-choice="fantasy">Castle</button>
+        </div>
         <section class="auth-panel">
             <a class="auth-brand" href="{% url 'home' %}">Portfolio</a>
             <h1>Login</h1>
@@ -40,5 +67,6 @@
             </p>
         </section>
     </main>
+    <script src="{% static 'portfolio/script.js' %}"></script>
 </body>
 </html>

@@ -5,9 +5,83 @@
 body {
     margin: 0;
     font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    background: #e6f7fb;
-    color: #083344;
+    font-style: italic;
+    background: #050816;
+    color: #edf7ff;
     line-height: 1.6;
+}
+
+body::selection {
+    background: #f472b6;
+    color: #ffffff;
+}
+
+.space-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    overflow: hidden;
+    background:
+        radial-gradient(circle at 16% 18%, rgba(168, 85, 247, 0.36), transparent 26%),
+        radial-gradient(circle at 78% 22%, rgba(14, 165, 233, 0.28), transparent 24%),
+        radial-gradient(circle at 48% 92%, rgba(244, 114, 182, 0.2), transparent 26%),
+        linear-gradient(135deg, #050816 0%, #10123a 44%, #16071f 100%);
+}
+
+.star-layer {
+    position: absolute;
+    inset: 0;
+    background-repeat: repeat;
+    opacity: 0.78;
+}
+
+.star-layer-one {
+    background-image:
+        radial-gradient(circle, rgba(255, 255, 255, 0.9) 1px, transparent 1.6px),
+        radial-gradient(circle, rgba(125, 211, 252, 0.85) 1px, transparent 1.5px);
+    background-size: 88px 88px, 132px 132px;
+    background-position: 0 0, 34px 52px;
+    animation: starDriftOne 38s linear infinite;
+}
+
+.star-layer-two {
+    background-image:
+        radial-gradient(circle, rgba(255, 255, 255, 0.75) 1px, transparent 1.4px),
+        radial-gradient(circle, rgba(244, 114, 182, 0.7) 1px, transparent 1.5px);
+    background-size: 156px 156px, 214px 214px;
+    background-position: 80px 20px, 18px 90px;
+    opacity: 0.5;
+    animation: starDriftTwo 64s linear infinite;
+}
+
+.nebula {
+    position: absolute;
+    width: 34rem;
+    height: 34rem;
+    border-radius: 50%;
+    filter: blur(42px);
+    opacity: 0.28;
+    animation: nebulaPulse 8s ease-in-out infinite alternate;
+}
+
+.nebula-one {
+    top: 5rem;
+    right: -10rem;
+    background: #22d3ee;
+}
+
+.nebula-two {
+    bottom: -12rem;
+    left: -8rem;
+    background: #f472b6;
+}
+
+.fantasy-mountains,
+.fantasy-castle,
+.fantasy-dragon,
+.fantasy-fire,
+.fantasy-mist {
+    display: none;
 }
 
 .container {
@@ -19,8 +93,8 @@ body {
     position: sticky;
     top: 0;
     z-index: 10;
-    background: rgba(236, 254, 255, 0.96);
-    border-bottom: 1px solid #bae6fd;
+    background: rgba(5, 8, 22, 0.78);
+    border-bottom: 1px solid rgba(148, 163, 184, 0.22);
     backdrop-filter: blur(12px);
 }
 
@@ -35,24 +109,26 @@ body {
 .brand a {
     font-weight: 700;
     font-size: 1.1rem;
-    color: #075985;
+    color: #f8fbff;
     text-decoration: none;
+    text-shadow: 0 0 18px rgba(125, 211, 252, 0.45);
 }
 
 .nav-links {
     display: flex;
     gap: 1.5rem;
+    align-items: center;
 }
 
 .nav-links a {
-    color: #155e75;
+    color: #c8ddff;
     text-decoration: none;
     transition: color 0.2s ease;
 }
 
 .nav-links a:hover,
 .logout-form button:hover {
-    color: #0284c7;
+    color: #f0abfc;
 }
 
 .logout-form {
@@ -63,9 +139,83 @@ body {
     padding: 0;
     border: 0;
     background: transparent;
-    color: #155e75;
+    color: #c8ddff;
     font: inherit;
     cursor: pointer;
+}
+
+.theme-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 4.5rem;
+    min-height: 2.25rem;
+    padding: 0.45rem 0.8rem;
+    border: 1px solid rgba(125, 211, 252, 0.42);
+    border-radius: 999px;
+    background: rgba(15, 23, 42, 0.78);
+    color: #dbeafe;
+    font: inherit;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 0 22px rgba(56, 189, 248, 0.14);
+}
+
+.theme-toggle:hover {
+    color: #ffffff;
+    border-color: rgba(240, 171, 252, 0.7);
+}
+
+.theme-control {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    color: #c8ddff;
+    font-size: 0.92rem;
+    font-weight: 700;
+}
+
+.theme-select {
+    min-height: 2.25rem;
+    padding: 0.35rem 0.65rem;
+    border: 1px solid rgba(125, 211, 252, 0.42);
+    border-radius: 999px;
+    background: rgba(15, 23, 42, 0.78);
+    color: #dbeafe;
+    font: inherit;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 0 22px rgba(56, 189, 248, 0.14);
+}
+
+.theme-select:focus {
+    outline: 3px solid rgba(125, 211, 252, 0.24);
+}
+
+.theme-buttons {
+    display: flex;
+    gap: 0.35rem;
+    align-items: center;
+}
+
+.theme-buttons button {
+    min-height: 2.15rem;
+    padding: 0.35rem 0.65rem;
+    border: 1px solid rgba(125, 211, 252, 0.32);
+    border-radius: 999px;
+    background: rgba(15, 23, 42, 0.66);
+    color: #dbeafe;
+    font: inherit;
+    font-size: 0.86rem;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.theme-buttons button:hover,
+.theme-buttons button.active {
+    border-color: rgba(240, 171, 252, 0.72);
+    background: rgba(124, 58, 237, 0.38);
+    color: #ffffff;
 }
 
 .menu-toggle {
@@ -83,26 +233,30 @@ body {
     width: 100%;
     height: 2px;
     margin: 5px 0;
-    background: #075985;
+    background: #dbeafe;
     border-radius: 999px;
 }
 
 .hero {
-    padding: 6rem 0 4rem;
-    background:
-        radial-gradient(circle at 18% 18%, rgba(125, 211, 252, 0.45), transparent 30%),
-        radial-gradient(circle at 86% 30%, rgba(45, 212, 191, 0.28), transparent 28%),
-        linear-gradient(135deg, #cffafe 0%, #f0fdfa 48%, #e0f2fe 100%);
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(280px, 420px);
+    gap: 2rem;
+    align-items: center;
+    min-height: 74vh;
+    padding: 6rem max(5vw, 1.5rem) 4rem;
+    overflow: hidden;
 }
 
 .hero-content {
     max-width: 680px;
+    margin-left: max(0px, calc((100vw - 1120px) / 2));
 }
 
 .eyebrow {
     display: inline-block;
     margin-bottom: 0.75rem;
-    color: #0284c7;
+    color: #67e8f9;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.14em;
@@ -113,11 +267,12 @@ body {
     margin: 0 0 1rem;
     font-size: clamp(2.3rem, 5vw, 4rem);
     line-height: 1.05;
+    text-shadow: 0 0 34px rgba(59, 130, 246, 0.36);
 }
 
 .hero p {
     margin: 0 0 1.75rem;
-    color: #155e75;
+    color: #c8ddff;
     font-size: 1.05rem;
 }
 
@@ -132,14 +287,14 @@ body {
     flex-wrap: wrap;
     gap: 0.75rem;
     margin-top: 1.5rem;
-    color: #0e7490;
+    color: #dbeafe;
     font-size: 0.95rem;
 }
 
 .hero-meta span {
     padding: 0.45rem 0.7rem;
-    background: rgba(240, 253, 250, 0.82);
-    border: 1px solid #99f6e4;
+    background: rgba(15, 23, 42, 0.72);
+    border: 1px solid rgba(125, 211, 252, 0.42);
     border-radius: 8px;
 }
 
@@ -157,14 +312,135 @@ body {
 }
 
 .button {
-    background: #0369a1;
+    background: linear-gradient(135deg, #2563eb, #c026d3);
     color: white;
-    box-shadow: 0 12px 26px rgba(3, 105, 161, 0.2);
+    box-shadow: 0 16px 32px rgba(37, 99, 235, 0.26);
 }
 
 .button-secondary {
-    background: #ccfbf1;
-    color: #0f766e;
+    background: rgba(219, 234, 254, 0.12);
+    color: #dbeafe;
+    border: 1px solid rgba(125, 211, 252, 0.36);
+}
+
+.orbit-system {
+    position: relative;
+    width: min(40vw, 410px);
+    aspect-ratio: 1;
+    justify-self: center;
+    border-radius: 50%;
+}
+
+.planet,
+.orbit,
+.moon {
+    position: absolute;
+    border-radius: 50%;
+}
+
+.planet-main {
+    inset: 22%;
+    background:
+        radial-gradient(circle at 34% 28%, rgba(255, 255, 255, 0.9), transparent 9%),
+        radial-gradient(circle at 58% 62%, #38bdf8, #7c3aed 54%, #111827 100%);
+    box-shadow:
+        0 0 38px rgba(56, 189, 248, 0.56),
+        inset -28px -28px 44px rgba(2, 6, 23, 0.48);
+    animation: planetFloat 6s ease-in-out infinite;
+}
+
+.orbit {
+    border: 1px solid rgba(219, 234, 254, 0.26);
+    transform: rotate(-18deg);
+}
+
+.orbit-one {
+    inset: 8%;
+    animation: orbitSpin 18s linear infinite;
+}
+
+.orbit-two {
+    inset: 0;
+    border-color: rgba(244, 114, 182, 0.24);
+    animation: orbitSpinReverse 28s linear infinite;
+}
+
+.moon {
+    width: 1.2rem;
+    height: 1.2rem;
+    top: 22%;
+    right: 14%;
+    background: #f8fafc;
+    box-shadow: 0 0 20px rgba(248, 250, 252, 0.8);
+    animation: moonGlow 3s ease-in-out infinite alternate;
+}
+
+@keyframes starDriftOne {
+    from {
+        background-position: 0 0, 34px 52px;
+    }
+    to {
+        background-position: 88px 88px, 166px 184px;
+    }
+}
+
+@keyframes starDriftTwo {
+    from {
+        background-position: 80px 20px, 18px 90px;
+    }
+    to {
+        background-position: -76px 176px, 232px 304px;
+    }
+}
+
+@keyframes nebulaPulse {
+    from {
+        transform: scale(0.96);
+        opacity: 0.2;
+    }
+    to {
+        transform: scale(1.08);
+        opacity: 0.34;
+    }
+}
+
+@keyframes planetFloat {
+    0%,
+    100% {
+        transform: translateY(0) scale(1);
+    }
+    50% {
+        transform: translateY(-14px) scale(1.02);
+    }
+}
+
+@keyframes orbitSpin {
+    from {
+        transform: rotate(-18deg);
+    }
+    to {
+        transform: rotate(342deg);
+    }
+}
+
+@keyframes orbitSpinReverse {
+    from {
+        transform: rotate(24deg);
+    }
+    to {
+        transform: rotate(-336deg);
+    }
+}
+
+@keyframes moonGlow {
+    from {
+        opacity: 0.62;
+        box-shadow: 0 0 16px rgba(248, 250, 252, 0.72);
+    }
+    to {
+        opacity: 1;
+        box-shadow: 0 0 30px rgba(103, 232, 249, 0.95);
+    }
 }
 
 .about,
@@ -183,7 +459,7 @@ body {
 .about p,
 .contact p {
     max-width: 720px;
-    color: #155e75;
+    color: #c8ddff;
 }
 
 .skills {
@@ -195,10 +471,10 @@ body {
 
 .skills span {
     padding: 0.5rem 0.75rem;
-    background: #f0fdfa;
-    border: 1px solid #99f6e4;
+    background: rgba(15, 23, 42, 0.68);
+    border: 1px solid rgba(103, 232, 249, 0.35);
     border-radius: 8px;
-    color: #0f766e;
+    color: #a5f3fc;
     font-weight: 600;
 }
 
@@ -209,16 +485,17 @@ body {
 }
 
 .project-card {
-    background: #f8feff;
-    border: 1px solid #bae6fd;
+    background: rgba(15, 23, 42, 0.72);
+    border: 1px solid rgba(148, 163, 184, 0.24);
     border-radius: 8px;
     padding: 1.5rem;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
+    backdrop-filter: blur(10px);
 }
 
 .project-card:hover {
     transform: translateY(-4px);
-    box-shadow: 0 18px 40px rgba(8, 145, 178, 0.16);
+    box-shadow: 0 18px 40px rgba(37, 99, 235, 0.22);
 }
 
 .project-card h3 {
@@ -228,20 +505,21 @@ body {
 
 .project-card p {
     margin: 0 0 1rem;
-    color: #155e75;
+    color: #c8ddff;
 }
 
 .project-link {
-    color: #0284c7;
+    color: #67e8f9;
     font-weight: 600;
     text-decoration: none;
 }
 
 .contact-card {
-    background: #f8feff;
-    border: 1px solid #bae6fd;
+    background: rgba(15, 23, 42, 0.76);
+    border: 1px solid rgba(148, 163, 184, 0.24);
     border-radius: 8px;
     padding: 2rem;
+    backdrop-filter: blur(10px);
 }
 
 .contact-card form {
@@ -257,11 +535,16 @@ body {
 .contact-card textarea {
     width: 100%;
     padding: 0.9rem 1rem;
-    border: 1px solid #7dd3fc;
+    border: 1px solid rgba(125, 211, 252, 0.42);
     border-radius: 8px;
     font: inherit;
-    color: #083344;
-    background: #ffffff;
+    color: #edf7ff;
+    background: rgba(2, 6, 23, 0.54);
+}
+
+.contact-card input::placeholder,
+.contact-card textarea::placeholder {
+    color: #94a3b8;
 }
 
 .contact-card input:focus,
@@ -276,16 +559,16 @@ body {
 
 .form-feedback {
     margin-top: 0.5rem;
-    color: #0f766e;
+    color: #67e8f9;
     font-size: 0.95rem;
 }
 
 .site-footer {
     padding: 1.5rem 0;
     text-align: center;
-    color: #155e75;
-    background: #cffafe;
-    border-top: 1px solid #bae6fd;
+    color: #c8ddff;
+    background: rgba(5, 8, 22, 0.78);
+    border-top: 1px solid rgba(148, 163, 184, 0.22);
 }
 
 .auth-page {
@@ -300,6 +583,20 @@ body {
     display: grid;
     place-items: center;
     padding: 2rem;
+}
+
+.auth-theme-toggle {
+    position: fixed;
+    top: 1.25rem;
+    right: 1.25rem;
+    z-index: 2;
+}
+
+.auth-theme-buttons {
+    position: fixed;
+    top: 4.15rem;
+    right: 1.25rem;
+    z-index: 2;
 }
 
 .auth-panel {
@@ -376,21 +673,878 @@ body {
     font-weight: 700;
 }
 
+.milkyway-auth-page {
+    position: relative;
+    background: #030712;
+    color: #eef6ff;
+}
+
+.milkyway-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    overflow: hidden;
+    background:
+        radial-gradient(circle at 18% 20%, rgba(56, 189, 248, 0.25), transparent 24%),
+        radial-gradient(circle at 84% 76%, rgba(217, 70, 239, 0.24), transparent 24%),
+        linear-gradient(135deg, #020617 0%, #0f172a 48%, #1e102f 100%);
+}
+
+.milkyway-band {
+    position: absolute;
+    left: -18%;
+    top: 48%;
+    width: 136%;
+    height: 13rem;
+    border-radius: 50%;
+    background:
+        radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.88), transparent 3%),
+        radial-gradient(circle at 38% 40%, rgba(186, 230, 253, 0.8), transparent 5%),
+        radial-gradient(circle at 62% 54%, rgba(244, 114, 182, 0.58), transparent 6%),
+        linear-gradient(90deg, transparent, rgba(226, 232, 240, 0.08), rgba(125, 211, 252, 0.32), rgba(244, 114, 182, 0.24), transparent);
+    filter: blur(1px);
+    opacity: 0.82;
+    transform: rotate(-18deg);
+    animation: milkywayGlow 7s ease-in-out infinite alternate;
+}
+
+.milkyway-stars {
+    position: absolute;
+    inset: 0;
+    background-repeat: repeat;
+}
+
+.milkyway-stars-one {
+    background-image:
+        radial-gradient(circle, rgba(255, 255, 255, 0.95) 1px, transparent 1.5px),
+        radial-gradient(circle, rgba(125, 211, 252, 0.8) 1px, transparent 1.6px);
+    background-size: 72px 72px, 128px 128px;
+    background-position: 12px 22px, 48px 64px;
+    animation: starDriftOne 42s linear infinite;
+}
+
+.milkyway-stars-two {
+    background-image:
+        radial-gradient(circle, rgba(255, 255, 255, 0.72) 1px, transparent 1.4px),
+        radial-gradient(circle, rgba(244, 114, 182, 0.65) 1px, transparent 1.5px);
+    background-size: 154px 154px, 220px 220px;
+    background-position: 34px 18px, 110px 82px;
+    opacity: 0.66;
+    animation: starDriftTwo 70s linear infinite;
+}
+
+.milkyway-auth-page .auth-panel {
+    background: rgba(15, 23, 42, 0.78);
+    border-color: rgba(186, 230, 253, 0.3);
+    box-shadow: 0 26px 70px rgba(14, 165, 233, 0.18);
+    backdrop-filter: blur(14px);
+}
+
+.milkyway-auth-page .auth-brand,
+.milkyway-auth-page .auth-switch a {
+    color: #67e8f9;
+}
+
+.milkyway-auth-page .auth-panel p {
+    color: #c8ddff;
+}
+
+.milkyway-auth-page .auth-form input {
+    background: rgba(2, 6, 23, 0.58);
+    border-color: rgba(125, 211, 252, 0.38);
+    color: #eef6ff;
+}
+
+.milkyway-auth-page .button {
+    background: linear-gradient(135deg, #2563eb, #7c3aed, #db2777);
+}
+
+@keyframes milkywayGlow {
+    from {
+        opacity: 0.64;
+        transform: rotate(-18deg) scale(0.98);
+    }
+    to {
+        opacity: 0.94;
+        transform: rotate(-18deg) scale(1.04);
+    }
+}
+
+.light-theme {
+    background: #edf7ff;
+    color: #102033;
+}
+
+.light-theme .space-backdrop {
+    background:
+        radial-gradient(circle at 16% 18%, rgba(14, 165, 233, 0.28), transparent 26%),
+        radial-gradient(circle at 78% 22%, rgba(217, 70, 239, 0.18), transparent 24%),
+        radial-gradient(circle at 48% 92%, rgba(251, 191, 36, 0.18), transparent 26%),
+        linear-gradient(135deg, #e0f2fe 0%, #fdf2f8 52%, #f8fafc 100%);
+}
+
+.light-theme .star-layer {
+    opacity: 0.42;
+}
+
+.light-theme .site-header,
+.light-theme .site-footer {
+    background: rgba(248, 250, 252, 0.84);
+    border-color: rgba(14, 116, 144, 0.16);
+}
+
+.light-theme .brand a,
+.light-theme .nav-links a,
+.light-theme .logout-form button,
+.light-theme .hero p,
+.light-theme .hero-meta,
+.light-theme .about p,
+.light-theme .contact p,
+.light-theme .project-card p,
+.light-theme .site-footer {
+    color: #164e63;
+}
+
+.light-theme .brand a {
+    text-shadow: none;
+}
+
+.light-theme .eyebrow,
+.light-theme .project-link {
+    color: #7c3aed;
+}
+
+.light-theme .hero h1 {
+    text-shadow: none;
+}
+
+.light-theme .hero-meta span,
+.light-theme .skills span,
+.light-theme .project-card,
+.light-theme .contact-card {
+    background: rgba(255, 255, 255, 0.76);
+    border-color: rgba(14, 116, 144, 0.18);
+}
+
+.light-theme .skills span {
+    color: #0f766e;
+}
+
+.light-theme .contact-card input,
+.light-theme .contact-card textarea {
+    background: #ffffff;
+    color: #102033;
+    border-color: rgba(14, 116, 144, 0.25);
+}
+
+.light-theme .theme-toggle {
+    background: rgba(255, 255, 255, 0.82);
+    color: #164e63;
+    border-color: rgba(14, 116, 144, 0.22);
+}
+
+.light-theme .theme-control {
+    color: #164e63;
+}
+
+.light-theme .theme-select {
+    background: rgba(255, 255, 255, 0.88);
+    color: #164e63;
+    border-color: rgba(14, 116, 144, 0.22);
+}
+
+.light-theme.milkyway-auth-page {
+    background: #edf7ff;
+    color: #102033;
+}
+
+.light-theme .milkyway-backdrop {
+    background:
+        radial-gradient(circle at 18% 20%, rgba(56, 189, 248, 0.22), transparent 24%),
+        radial-gradient(circle at 84% 76%, rgba(217, 70, 239, 0.18), transparent 24%),
+        linear-gradient(135deg, #e0f2fe 0%, #fdf2f8 52%, #f8fafc 100%);
+}
+
+.light-theme .milkyway-band {
+    opacity: 0.55;
+    background:
+        radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.95), transparent 3%),
+        radial-gradient(circle at 38% 40%, rgba(14, 165, 233, 0.5), transparent 5%),
+        radial-gradient(circle at 62% 54%, rgba(217, 70, 239, 0.36), transparent 6%),
+        linear-gradient(90deg, transparent, rgba(14, 165, 233, 0.12), rgba(217, 70, 239, 0.22), transparent);
+}
+
+.light-theme.milkyway-auth-page .auth-panel {
+    background: rgba(255, 255, 255, 0.78);
+    border-color: rgba(14, 116, 144, 0.18);
+    box-shadow: 0 26px 70px rgba(14, 116, 144, 0.14);
+}
+
+.light-theme.milkyway-auth-page .auth-panel p {
+    color: #164e63;
+}
+
+.light-theme.milkyway-auth-page .auth-brand,
+.light-theme.milkyway-auth-page .auth-switch a {
+    color: #7c3aed;
+}
+
+.light-theme.milkyway-auth-page .auth-form input {
+    background: #ffffff;
+    border-color: rgba(14, 116, 144, 0.22);
+    color: #102033;
+}
+
+.ocean-theme {
+    background: #03151d;
+    color: #ecfeff;
+}
+
+.ocean-theme .space-backdrop,
+.ocean-theme .milkyway-backdrop {
+    background:
+        radial-gradient(circle at 14% 18%, rgba(45, 212, 191, 0.34), transparent 24%),
+        radial-gradient(circle at 82% 26%, rgba(56, 189, 248, 0.32), transparent 24%),
+        radial-gradient(circle at 50% 92%, rgba(129, 140, 248, 0.18), transparent 26%),
+        linear-gradient(135deg, #03151d 0%, #063345 48%, #082f49 100%);
+}
+
+.ocean-theme .star-layer-one,
+.ocean-theme .milkyway-stars-one {
+    background-image:
+        radial-gradient(circle, rgba(236, 254, 255, 0.7) 2px, transparent 3px),
+        radial-gradient(circle, rgba(94, 234, 212, 0.52) 3px, transparent 4px),
+        linear-gradient(115deg, transparent 42%, rgba(34, 211, 238, 0.16) 43%, transparent 48%);
+    background-size: 96px 96px, 148px 148px, 240px 120px;
+    animation: oceanCurrent 16s linear infinite;
+}
+
+.ocean-theme .star-layer-two,
+.ocean-theme .milkyway-stars-two {
+    background-image:
+        radial-gradient(ellipse, rgba(186, 230, 253, 0.38) 1px, transparent 3px),
+        linear-gradient(90deg, transparent, rgba(125, 211, 252, 0.12), transparent);
+    background-size: 180px 120px, 320px 180px;
+    opacity: 0.72;
+    animation: oceanSwell 10s ease-in-out infinite alternate;
+}
+
+.ocean-theme .nebula {
+    background: #22d3ee;
+    animation: oceanGlow 5s ease-in-out infinite alternate;
+}
+
+.ocean-theme .milkyway-band {
+    background:
+        radial-gradient(circle at 26% 50%, rgba(236, 254, 255, 0.82), transparent 3%),
+        radial-gradient(circle at 52% 42%, rgba(45, 212, 191, 0.55), transparent 6%),
+        linear-gradient(90deg, transparent, rgba(34, 211, 238, 0.16), rgba(20, 184, 166, 0.32), transparent);
+}
+
+.ocean-theme .site-header,
+.ocean-theme .site-footer {
+    background: rgba(3, 21, 29, 0.82);
+    border-color: rgba(94, 234, 212, 0.22);
+}
+
+.ocean-theme .brand a,
+.ocean-theme .nav-links a,
+.ocean-theme .logout-form button,
+.ocean-theme .hero p,
+.ocean-theme .hero-meta,
+.ocean-theme .about p,
+.ocean-theme .contact p,
+.ocean-theme .project-card p,
+.ocean-theme .site-footer,
+.ocean-theme .theme-control {
+    color: #bff8ff;
+}
+
+.ocean-theme .eyebrow,
+.ocean-theme .project-link,
+.ocean-theme.milkyway-auth-page .auth-brand,
+.ocean-theme.milkyway-auth-page .auth-switch a {
+    color: #5eead4;
+}
+
+.ocean-theme .button,
+.ocean-theme.milkyway-auth-page .button {
+    background: linear-gradient(135deg, #0891b2, #14b8a6, #2563eb);
+}
+
+.ocean-theme .hero-meta span,
+.ocean-theme .skills span,
+.ocean-theme .project-card,
+.ocean-theme .contact-card,
+.ocean-theme.milkyway-auth-page .auth-panel {
+    background: rgba(6, 78, 98, 0.52);
+    border-color: rgba(94, 234, 212, 0.28);
+}
+
+.ocean-theme .skills span {
+    color: #ccfbf1;
+}
+
+.ocean-theme .theme-select,
+.ocean-theme .theme-buttons button,
+.ocean-theme.milkyway-auth-page .auth-form input,
+.ocean-theme .contact-card input,
+.ocean-theme .contact-card textarea {
+    background: rgba(3, 21, 29, 0.68);
+    border-color: rgba(94, 234, 212, 0.34);
+    color: #ecfeff;
+}
+
+.earth-theme {
+    background: #07140d;
+    color: #f0fdf4;
+}
+
+.earth-theme .space-backdrop,
+.earth-theme .milkyway-backdrop {
+    background:
+        radial-gradient(circle at 18% 20%, rgba(74, 222, 128, 0.28), transparent 25%),
+        radial-gradient(circle at 82% 24%, rgba(56, 189, 248, 0.22), transparent 24%),
+        radial-gradient(circle at 46% 88%, rgba(244, 114, 182, 0.16), transparent 26%),
+        linear-gradient(135deg, #07140d 0%, #113322 48%, #10233a 100%);
+}
+
+.earth-theme .star-layer-one,
+.earth-theme .milkyway-stars-one {
+    background-image:
+        radial-gradient(circle, rgba(187, 247, 208, 0.82) 1.4px, transparent 2.6px),
+        radial-gradient(circle, rgba(253, 224, 71, 0.62) 1.4px, transparent 2.5px),
+        linear-gradient(130deg, transparent 36%, rgba(74, 222, 128, 0.14) 41%, transparent 52%);
+    background-size: 86px 86px, 132px 132px, 280px 150px;
+    animation: earthFireflies 18s linear infinite;
+}
+
+.earth-theme .star-layer-two,
+.earth-theme .milkyway-stars-two {
+    background-image:
+        radial-gradient(ellipse, rgba(134, 239, 172, 0.42) 1px, transparent 3px),
+        linear-gradient(90deg, transparent, rgba(56, 189, 248, 0.12), transparent);
+    background-size: 190px 150px, 340px 190px;
+    opacity: 0.68;
+    animation: earthAurora 9s ease-in-out infinite alternate;
+}
+
+.earth-theme .nebula {
+    background: #22c55e;
+    animation: earthGlow 6s ease-in-out infinite alternate;
+}
+
+.earth-theme .milkyway-band {
+    background:
+        radial-gradient(circle at 22% 50%, rgba(240, 253, 244, 0.82), transparent 3%),
+        radial-gradient(circle at 48% 42%, rgba(134, 239, 172, 0.52), transparent 6%),
+        radial-gradient(circle at 68% 54%, rgba(125, 211, 252, 0.42), transparent 6%),
+        linear-gradient(90deg, transparent, rgba(34, 197, 94, 0.2), rgba(56, 189, 248, 0.2), transparent);
+}
+
+.earth-theme .site-header,
+.earth-theme .site-footer {
+    background: rgba(7, 20, 13, 0.84);
+    border-color: rgba(134, 239, 172, 0.22);
+}
+
+.earth-theme .brand a,
+.earth-theme .nav-links a,
+.earth-theme .logout-form button,
+.earth-theme .hero p,
+.earth-theme .hero-meta,
+.earth-theme .about p,
+.earth-theme .contact p,
+.earth-theme .project-card p,
+.earth-theme .site-footer,
+.earth-theme .theme-control {
+    color: #dcfce7;
+}
+
+.earth-theme .eyebrow,
+.earth-theme .project-link,
+.earth-theme.milkyway-auth-page .auth-brand,
+.earth-theme.milkyway-auth-page .auth-switch a {
+    color: #86efac;
+}
+
+.earth-theme .button,
+.earth-theme.milkyway-auth-page .button {
+    background: linear-gradient(135deg, #16a34a, #0ea5e9, #7c3aed);
+}
+
+.earth-theme .hero-meta span,
+.earth-theme .skills span,
+.earth-theme .project-card,
+.earth-theme .contact-card,
+.earth-theme.milkyway-auth-page .auth-panel {
+    background: rgba(20, 83, 45, 0.48);
+    border-color: rgba(134, 239, 172, 0.28);
+}
+
+.earth-theme .skills span {
+    color: #bbf7d0;
+}
+
+.earth-theme .theme-select,
+.earth-theme .theme-buttons button,
+.earth-theme.milkyway-auth-page .auth-form input,
+.earth-theme .contact-card input,
+.earth-theme .contact-card textarea {
+    background: rgba(7, 20, 13, 0.68);
+    border-color: rgba(134, 239, 172, 0.32);
+    color: #f0fdf4;
+}
+
+.fantasy-theme {
+    background: #060811;
+    color: #f8fafc;
+}
+
+.fantasy-theme .space-backdrop,
+.fantasy-theme .milkyway-backdrop {
+    background:
+        radial-gradient(circle at 58% 18%, rgba(248, 113, 113, 0.14), transparent 18%),
+        radial-gradient(circle at 14% 12%, rgba(96, 165, 250, 0.16), transparent 22%),
+        linear-gradient(180deg, #070a16 0%, #17152a 42%, #08060a 100%);
+}
+
+.fantasy-theme .star-layer-one,
+.fantasy-theme .milkyway-stars-one {
+    background-image:
+        radial-gradient(circle, rgba(226, 232, 240, 0.38) 1px, transparent 1.5px),
+        linear-gradient(105deg, transparent 48%, rgba(255, 255, 255, 0.24) 49%, transparent 51%);
+    background-size: 124px 124px, 420px 260px;
+    animation: stormRoll 18s linear infinite;
+}
+
+.fantasy-theme .star-layer-two,
+.fantasy-theme .milkyway-stars-two {
+    background-image:
+        radial-gradient(circle, rgba(96, 165, 250, 0.34) 1px, transparent 2px),
+        linear-gradient(90deg, transparent, rgba(148, 163, 184, 0.12), transparent);
+    background-size: 190px 190px, 360px 220px;
+    opacity: 0.66;
+    animation: stormFlash 7s ease-in-out infinite;
+}
+
+.fantasy-theme .nebula {
+    background: #7f1d1d;
+    animation: emberCloud 5s ease-in-out infinite alternate;
+}
+
+.fantasy-theme .fantasy-mountains,
+.fantasy-theme .fantasy-castle,
+.fantasy-theme .fantasy-dragon,
+.fantasy-theme .fantasy-fire,
+.fantasy-theme .fantasy-mist {
+    display: block;
+    position: absolute;
+    pointer-events: none;
+}
+
+.fantasy-theme .fantasy-mountains {
+    left: -8%;
+    right: -8%;
+    bottom: -1rem;
+    height: 46vh;
+    background:
+        linear-gradient(138deg, transparent 0 34%, #111827 35% 48%, transparent 49%) 0 100% / 30% 100% no-repeat,
+        linear-gradient(126deg, transparent 0 38%, #1f2937 39% 54%, transparent 55%) 18% 100% / 34% 92% no-repeat,
+        linear-gradient(142deg, transparent 0 42%, #0f172a 43% 62%, transparent 63%) 48% 100% / 38% 96% no-repeat,
+        linear-gradient(130deg, transparent 0 40%, #1e1b4b 41% 58%, transparent 59%) 76% 100% / 32% 84% no-repeat;
+    filter: drop-shadow(0 -24px 35px rgba(15, 23, 42, 0.7));
+}
+
+.fantasy-theme .fantasy-castle {
+    left: 50%;
+    bottom: 18vh;
+    width: min(40vw, 440px);
+    height: min(34vw, 390px);
+    transform: translateX(-50%);
+    background:
+        linear-gradient(#111827, #0a0c12) 44% 32% / 12% 68% no-repeat,
+        linear-gradient(#111827, #07080d) 58% 42% / 12% 58% no-repeat,
+        linear-gradient(#1f2937, #0b0d12) 31% 48% / 18% 48% no-repeat,
+        linear-gradient(#1f2937, #0b0d12) 70% 50% / 18% 46% no-repeat,
+        linear-gradient(#111827, #06070b) 50% 65% / 64% 34% no-repeat,
+        linear-gradient(120deg, transparent 0 44%, #111827 45% 61%, transparent 62%) 50% 101% / 92% 30% no-repeat;
+    clip-path: polygon(46% 5%, 52% 5%, 56% 28%, 63% 22%, 68% 42%, 77% 36%, 83% 62%, 100% 100%, 0 100%, 16% 60%, 23% 36%, 32% 42%, 38% 22%);
+    box-shadow: 0 0 70px rgba(248, 113, 113, 0.16);
+}
+
+.fantasy-theme .fantasy-castle::before {
+    content: "";
+    position: absolute;
+    inset: 15% 18% 0;
+    background:
+        repeating-linear-gradient(90deg, transparent 0 18px, rgba(148, 163, 184, 0.16) 19px 21px),
+        radial-gradient(circle at 48% 66%, rgba(248, 113, 113, 0.86) 0 3%, transparent 4%),
+        linear-gradient(#374151, #111827);
+    clip-path: polygon(48% 0, 53% 0, 55% 20%, 70% 20%, 72% 45%, 84% 45%, 100% 100%, 0 100%, 15% 45%, 28% 45%, 30% 20%, 45% 20%);
+}
+
+.fantasy-theme .fantasy-castle::after {
+    content: "";
+    position: absolute;
+    left: 17%;
+    right: 17%;
+    bottom: -16%;
+    height: 32%;
+    background: linear-gradient(140deg, #15100f, #030305 65%);
+    clip-path: polygon(22% 0, 82% 0, 100% 100%, 0 100%);
+}
+
+.fantasy-theme .fantasy-dragon {
+    width: 10rem;
+    height: 5rem;
+    background: #050507;
+    filter: drop-shadow(0 0 18px rgba(248, 113, 113, 0.36));
+    clip-path: polygon(0 58%, 18% 38%, 32% 48%, 48% 10%, 58% 48%, 100% 0, 74% 54%, 100% 92%, 58% 68%, 48% 100%, 34% 66%, 16% 76%);
+}
+
+.fantasy-theme .fantasy-dragon::after {
+    content: "";
+    position: absolute;
+    right: 8%;
+    top: 42%;
+    width: 0.55rem;
+    height: 0.55rem;
+    border-radius: 50%;
+    background: #f97316;
+    box-shadow: 0 0 16px #f97316;
+}
+
+.fantasy-theme .fantasy-dragon-perched {
+    left: calc(50% + min(10vw, 110px));
+    bottom: calc(18vh + min(25vw, 285px));
+    width: 7rem;
+    height: 4rem;
+    animation: dragonWatch 4s ease-in-out infinite alternate;
+}
+
+.fantasy-theme .fantasy-dragon-flight {
+    right: 10%;
+    top: 20%;
+    width: 13rem;
+    height: 6rem;
+    transform: rotate(-9deg);
+    animation: dragonFlight 9s ease-in-out infinite;
+}
+
+.fantasy-theme .fantasy-fire {
+    right: 18%;
+    top: 26%;
+    width: 18rem;
+    height: 4rem;
+    background:
+        radial-gradient(ellipse at 0% 50%, rgba(255, 255, 255, 0.92), transparent 12%),
+        radial-gradient(ellipse at 30% 50%, rgba(251, 146, 60, 0.86), transparent 34%),
+        radial-gradient(ellipse at 68% 50%, rgba(220, 38, 38, 0.52), transparent 62%);
+    filter: blur(2px);
+    clip-path: polygon(0 44%, 22% 12%, 52% 38%, 100% 50%, 52% 62%, 22% 88%, 0 56%);
+    animation: fireBreath 1.8s ease-in-out infinite alternate;
+}
+
+.fantasy-theme .fantasy-mist {
+    left: -10%;
+    right: -10%;
+    bottom: 13vh;
+    height: 20vh;
+    background:
+        radial-gradient(ellipse at 25% 55%, rgba(226, 232, 240, 0.22), transparent 45%),
+        radial-gradient(ellipse at 58% 48%, rgba(148, 163, 184, 0.18), transparent 44%),
+        radial-gradient(ellipse at 78% 64%, rgba(226, 232, 240, 0.16), transparent 48%);
+    filter: blur(12px);
+    animation: mistDrift 12s ease-in-out infinite alternate;
+}
+
+.fantasy-theme .site-header,
+.fantasy-theme .site-footer {
+    background: rgba(6, 8, 17, 0.82);
+    border-color: rgba(248, 113, 113, 0.18);
+}
+
+.fantasy-theme .brand a,
+.fantasy-theme .nav-links a,
+.fantasy-theme .logout-form button,
+.fantasy-theme .hero p,
+.fantasy-theme .hero-meta,
+.fantasy-theme .about p,
+.fantasy-theme .contact p,
+.fantasy-theme .project-card p,
+.fantasy-theme .site-footer,
+.fantasy-theme .theme-control {
+    color: #e5e7eb;
+}
+
+.fantasy-theme .eyebrow,
+.fantasy-theme .project-link,
+.fantasy-theme.milkyway-auth-page .auth-brand,
+.fantasy-theme.milkyway-auth-page .auth-switch a {
+    color: #fca5a5;
+}
+
+.fantasy-theme .button,
+.fantasy-theme.milkyway-auth-page .button {
+    background: linear-gradient(135deg, #7f1d1d, #dc2626, #f97316);
+}
+
+.fantasy-theme .hero-meta span,
+.fantasy-theme .skills span,
+.fantasy-theme .project-card,
+.fantasy-theme .contact-card,
+.fantasy-theme.milkyway-auth-page .auth-panel {
+    background: rgba(17, 24, 39, 0.7);
+    border-color: rgba(248, 113, 113, 0.24);
+}
+
+.fantasy-theme .skills span {
+    color: #fecaca;
+}
+
+.fantasy-theme .theme-select,
+.fantasy-theme .theme-buttons button,
+.fantasy-theme.milkyway-auth-page .auth-form input,
+.fantasy-theme .contact-card input,
+.fantasy-theme .contact-card textarea {
+    background: rgba(6, 8, 17, 0.72);
+    border-color: rgba(248, 113, 113, 0.28);
+    color: #f8fafc;
+}
+
+.fantasy-theme .theme-buttons button.active {
+    background: rgba(127, 29, 29, 0.72);
+    border-color: rgba(251, 146, 60, 0.62);
+}
+
+.light-theme .theme-buttons button {
+    background: rgba(255, 255, 255, 0.88);
+    color: #164e63;
+    border-color: rgba(14, 116, 144, 0.22);
+}
+
+.light-theme .theme-buttons button.active {
+    background: rgba(14, 165, 233, 0.18);
+    border-color: rgba(14, 116, 144, 0.42);
+}
+
+@keyframes oceanCurrent {
+    from {
+        background-position: 0 0, 40px 80px, 0 0;
+    }
+    to {
+        background-position: 96px -192px, 188px -68px, 240px 120px;
+    }
+}
+
+@keyframes oceanSwell {
+    from {
+        transform: translateY(0) scale(1);
+        opacity: 0.48;
+    }
+    to {
+        transform: translateY(-18px) scale(1.04);
+        opacity: 0.82;
+    }
+}
+
+@keyframes oceanGlow {
+    from {
+        opacity: 0.18;
+        transform: translateX(-14px) scale(0.96);
+    }
+    to {
+        opacity: 0.36;
+        transform: translateX(14px) scale(1.08);
+    }
+}
+
+@keyframes earthFireflies {
+    from {
+        background-position: 0 0, 24px 44px, 0 0;
+    }
+    to {
+        background-position: 86px -86px, 156px -88px, 280px 150px;
+    }
+}
+
+@keyframes earthAurora {
+    from {
+        transform: translateX(-10px) skewX(-4deg);
+        opacity: 0.42;
+    }
+    to {
+        transform: translateX(16px) skewX(4deg);
+        opacity: 0.78;
+    }
+}
+
+@keyframes earthGlow {
+    from {
+        opacity: 0.16;
+        transform: scale(0.94);
+    }
+    to {
+        opacity: 0.34;
+        transform: scale(1.08);
+    }
+}
+
+@keyframes stormRoll {
+    from {
+        background-position: 0 0, -120px 0;
+    }
+    to {
+        background-position: 124px 124px, 300px 0;
+    }
+}
+
+@keyframes stormFlash {
+    0%,
+    72%,
+    100% {
+        opacity: 0.42;
+    }
+    76% {
+        opacity: 0.95;
+    }
+    78% {
+        opacity: 0.34;
+    }
+    82% {
+        opacity: 0.88;
+    }
+}
+
+@keyframes emberCloud {
+    from {
+        opacity: 0.14;
+        transform: translateX(-12px) scale(0.95);
+    }
+    to {
+        opacity: 0.34;
+        transform: translateX(12px) scale(1.08);
+    }
+}
+
+@keyframes dragonWatch {
+    from {
+        transform: translateY(0) rotate(-4deg);
+    }
+    to {
+        transform: translateY(-8px) rotate(3deg);
+    }
+}
+
+@keyframes dragonFlight {
+    0%,
+    100% {
+        transform: translate(0, 0) rotate(-9deg) scale(1);
+    }
+    50% {
+        transform: translate(-32px, 18px) rotate(-2deg) scale(1.04);
+    }
+}
+
+@keyframes fireBreath {
+    from {
+        opacity: 0.45;
+        transform: scaleX(0.72);
+    }
+    to {
+        opacity: 0.95;
+        transform: scaleX(1);
+    }
+}
+
+@keyframes mistDrift {
+    from {
+        transform: translateX(-4%);
+        opacity: 0.46;
+    }
+    to {
+        transform: translateX(4%);
+        opacity: 0.76;
+    }
+}
+
 @media (max-width: 768px) {
+    .hero {
+        grid-template-columns: 1fr;
+        min-height: auto;
+        padding-top: 4.5rem;
+    }
+
+    .hero-content {
+        margin-left: 0;
+    }
+
+    .orbit-system {
+        width: min(74vw, 300px);
+    }
+
     .nav-links {
         position: absolute;
         top: 100%;
         right: 0;
         left: 0;
-        background: #ecfeff;
+        background: rgba(5, 8, 22, 0.96);
         flex-direction: column;
         padding: 1rem;
-        border-bottom: 1px solid #bae6fd;
+        border-bottom: 1px solid rgba(148, 163, 184, 0.22);
         display: none;
     }
 
     .nav-links.active {
         display: flex;
+    }
+
+    .theme-control {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 0.25rem;
+    }
+
+    .theme-buttons {
+        flex-wrap: wrap;
+    }
+
+    .auth-theme-buttons {
+        left: 1.25rem;
+        right: auto;
+    }
+
+    .light-theme .nav-links {
+        background: rgba(248, 250, 252, 0.96);
+        border-color: rgba(14, 116, 144, 0.16);
+    }
+
+    .ocean-theme .nav-links {
+        background: rgba(3, 21, 29, 0.96);
+        border-color: rgba(94, 234, 212, 0.22);
+    }
+
+    .earth-theme .nav-links {
+        background: rgba(7, 20, 13, 0.96);
+        border-color: rgba(134, 239, 172, 0.22);
+    }
+
+    .fantasy-theme .nav-links {
+        background: rgba(6, 8, 17, 0.96);
+        border-color: rgba(248, 113, 113, 0.18);
+    }
+
+    .fantasy-theme .fantasy-castle {
+        width: 78vw;
+        height: 62vw;
+        bottom: 16vh;
+    }
+
+    .fantasy-theme .fantasy-dragon-flight {
+        right: -1rem;
+        top: 24%;
+        width: 9rem;
     }
 
     .menu-toggle {

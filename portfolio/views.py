@@ -9,7 +9,7 @@ from .forms import SignUpForm
 @login_required
 def home(request):
     profile = {
-        "name": "Your Name",
+        "name": "Project HYDRA",
         "role": "Python Django Developer",
         "bio": "I build clean portfolio websites and practical web applications with Django, HTML, CSS, and JavaScript.",
         "email": "hello@example.com",
